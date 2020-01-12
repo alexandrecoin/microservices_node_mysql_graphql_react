@@ -1,5 +1,5 @@
 import { User, UserSession } from '#root/db/models';
-import {addHours} from 'date-fns';
+import { addHours } from 'date-fns';
 import generateUuid from '#root/helpers/generateUuid';
 import hashPassword from '#root/helpers/hashPassword';
 import passwordCompareSync from '#root/helpers/passwordCompareSync';
@@ -32,10 +32,13 @@ const setupRoutes = (app) => {
       }})
       if(!user) return next(new Error("Invalid email address"));
       if(!passwordCompareSync(req.body.password, user.passwordHash)) {
-        return next(new Error("Invalid password"))
+        return next(new Error("Invalid password"));
       } 
 
-      const expiresAt = addHours(new Date(), process.env.USER_SESSION_EXPIRY_HOURS);
+      // TODO: ENV variable to be added
+      const USER_SESSION_EXPIRY_HOURS = 1;
+
+      const expiresAt = addHours(new Date(), USER_SESSION_EXPIRY_HOURS);
       const sessionToken = generateUuid();
       const userSession = await UserSession.create({
         expiresAt,
