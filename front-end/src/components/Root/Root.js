@@ -1,5 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
+import Login from './Login';
 
 const Wrapper = styled.div`
   box-sizing: border-box;
@@ -30,7 +31,9 @@ const Root = () => {
     <Wrapper>
       <Container>
         <Content>ok</Content>
-        <Sidebar>zefzfec</Sidebar>
+        <Sidebar>
+          <Login />
+        </Sidebar>
       </Container>
     </Wrapper>
   );
