@@ -994,6 +994,11 @@ anymatch@^2.0.0:
     micromatch "^3.1.4"
     normalize-path "^2.1.1"
 
+apo@^0.0.0:
+  version "0.0.0"
+  resolved "https://registry.yarnpkg.com/apo/-/apo-0.0.0.tgz#720ac73ad5fcdbb85bff51ec8a8d08505f986fb0"
+  integrity sha1-cgrHOtX827hb/1Hsio0IUF+Yb7A=
+
 apollo-cache-inmemory@^1.6.5:
   version "1.6.5"
   resolved "https://registry.yarnpkg.com/apollo-cache-inmemory/-/apollo-cache-inmemory-1.6.5.tgz#2ccaa3827686f6ed7fb634203dbf2b8d7015856a"
