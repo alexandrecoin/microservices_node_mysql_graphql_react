@@ -1,13 +1,15 @@
-import "@babel/polyfill";
+import '@babel/polyfill';
 import React from 'react';
 import { render } from 'react-dom';
 
+import { Provider } from 'react-redux';
 import { ApolloProvider } from 'react-apollo';
 import graphqlClient from '#root/api/graphqlClient';
 
 import { createGlobalStyle, ThemeProvider } from 'styled-components';
 
 import Root from '#root/components/Root';
+import store from './store';
 import * as theme from './theme';
 
 const GlobalStyle = createGlobalStyle`
@@ -26,11 +28,13 @@ const GlobalStyle = createGlobalStyle`
 `;
 
 render(
-  <ApolloProvider client={graphqlClient}>
-    <ThemeProvider theme={theme}>
-      <GlobalStyle />
-      <Root />
-    </ThemeProvider>
-  </ApolloProvider>,
+  <Provider store={store}>
+    <ApolloProvider client={graphqlClient}>
+      <ThemeProvider theme={theme}>
+        <GlobalStyle />
+        <Root />
+      </ThemeProvider>
+    </ApolloProvider>
+  </Provider>,
   document.getElementById('app'),
 );
