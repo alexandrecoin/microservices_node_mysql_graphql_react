@@ -8,7 +8,7 @@ import graphqlClient from '#root/api/graphqlClient';
 
 import styled from 'styled-components';
 
-import Login from './Login';
+import AccountDetails from './AccountDetails';
 
 const Wrapper = styled.div`
   box-sizing: border-box;
@@ -47,14 +47,16 @@ const query = gql`
 `;
 
 const Root = () => {
-  const [initialised, setInitialised] = useState(false);
+  const [initialised, setInitialised] = useState(true);
   const dispatch = useDispatch();
   if (!initialised) return 'Loading...';
 
-  useEffect(async () => {
-    const data = await graphqlClient.query({ query });
-    if (data.userSession) dispatch(setSession(data.userSession));
-    setInitialised(true);
+  useEffect(() => {
+    graphqlClient.query({ query }).then(({data}) => {
+      if (data.userSession) dispatch(setSession(data.userSession));
+      console.log('userSession', data.userSession);
+      setInitialised(true);
+    })
   }, []);
 
   return (
@@ -62,7 +64,7 @@ const Root = () => {
       <Container>
         <Content>ok</Content>
         <Sidebar>
-          <Login />
+          <AccountDetails />
         </Sidebar>
       </Container>
     </Wrapper>
