@@ -9,6 +9,7 @@ import graphqlClient from '#root/api/graphqlClient';
 import styled from 'styled-components';
 
 import AccountDetails from './AccountDetails';
+import Listings from './Listings';
 
 const Wrapper = styled.div`
   box-sizing: border-box;
@@ -62,7 +63,7 @@ const Root = () => {
   return (
     <Wrapper>
       <Container>
-        <Content>ok</Content>
+        <Content><Listings /></Content>
         <Sidebar>
           <AccountDetails />
         </Sidebar>
