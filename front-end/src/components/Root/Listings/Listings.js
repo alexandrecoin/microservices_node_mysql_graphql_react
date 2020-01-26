@@ -2,6 +2,7 @@ import React from 'react';
 import gql from 'graphql-tag';
 import { useQuery } from '@apollo/react-hooks';
 import styled from 'styled-components';
+import AddListing from './AddListing';
 
 const Listing = styled.div`
   padding: 1rem 0;
@@ -37,12 +38,15 @@ const Listings = () => {
 
   return (
     <div>
-      {data.listings.map((listing) => {
-        <Listing key={listing.id}>
-          <Title>{listing.title}</Title>
-          <Description>{listing.description}</Description>
-        </Listing>;
-      })}
+      <div>
+        {/* {data.listings.map((listing) => {
+          <Listing key={listing.id}>
+            <Title>{listing.title}</Title>
+            <Description>{listing.description}</Description>
+          </Listing>;
+        })} */} Listing
+      </div>
+      <AddListing />
     </div>
   );
 };
