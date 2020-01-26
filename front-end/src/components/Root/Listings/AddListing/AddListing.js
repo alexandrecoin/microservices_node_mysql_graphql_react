@@ -2,6 +2,7 @@ import React from 'react';
 import { useMutation } from '@apollo/react-hooks';
 import gql from 'graphql-tag';
 
+import { useSelector } from 'react-redux';
 import useForm from 'react-hook-form';
 import styled from 'styled-components';
 
@@ -40,7 +41,10 @@ const mutation = gql`
   }
 `;
 
-const AddListing = () => {
+const AddListing = ({ onAddListing: pushAddListing }) => {
+  const session = useSelector((state) => state.session);
+  const [createListing] = useMutation(mutation);
+
   const {
     formState: { isSubmitting },
     handleSubmit,
@@ -49,8 +53,12 @@ const AddListing = () => {
   } = useForm();
 
   const onSubmit = handleSubmit(async ({ description, title }) => {
-    console.log(description, title);
+    await createListing({ variables: { description, title } });
+    reset();
+    pushAddListing();
   });
+
+  if (!session) return <p>Login to add a listing</p>;
 
   return (
     <Form onSubmit={onSubmit}>

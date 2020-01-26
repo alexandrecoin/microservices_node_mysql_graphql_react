@@ -8,7 +8,6 @@ import Account from './Account';
 const AccountDetails = () => {
   const session = useSelector((state) => state.session);
   const [isSigningUp, setIsSigningUp] = useState(false);
-  console.log(session);
   if (session) return <Account />;
 
   return isSigningUp ? (
